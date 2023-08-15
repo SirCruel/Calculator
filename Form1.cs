@@ -26,11 +26,11 @@ namespace Calculator
             Button button = (Button)sender;
             if (resultDisplayed)
             {
-              ClearBox();
-              resultDisplayed = false; 
+                ClearBox();
+                resultDisplayed = false;
             }
             textBoxAusgabe.Text += button.Text;
-            
+
         }
 
 
@@ -70,7 +70,7 @@ namespace Calculator
         private void LöschenButton_Click(object sender, EventArgs e)
         {
             textBoxAusgabe.Text = "";
-            textBox2.Text = ""; 
+            textBox2.Text = "";
         }
 
         private void WertLöschenButton_Click(object sender, EventArgs e)
@@ -164,13 +164,23 @@ namespace Calculator
         }
         private void MSButton_Click(object sender, EventArgs e)
         {
-
+            if (!string.IsNullOrWhiteSpace(textBoxAusgabe.Text))
+            {
+                try
+                {
+                    memoryValue = Convert.ToDouble(textBoxAusgabe.Text);
+                }
+                catch (Exception)
+                {
+                    textBoxAusgabe.Text = "Fehler";
+                }
+            }
         }
         private void ClearBox()
         {
             textBox2.Text = "";
             textBoxAusgabe.Text = "";
         }
-        
+
     }
 }
