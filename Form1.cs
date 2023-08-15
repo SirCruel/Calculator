@@ -8,7 +8,7 @@ namespace Calculator
     {
         private string previousExpression = "";
         private bool resultDisplayed = false;
-
+        private double memoryValue = 0.0;
         public Form1()
         {
             InitializeComponent();
@@ -126,19 +126,41 @@ namespace Calculator
         }
         private void MCButton_Click(object sender, EventArgs e)
         {
-
+            memoryValue = 0.0;
         }
         private void MRButton_Click(object sender, EventArgs e)
         {
-
+            textBoxAusgabe.Text = memoryValue.ToString();
         }
         private void MminusButton_Click(object sender, EventArgs e)
         {
-
+            if (!string.IsNullOrWhiteSpace(textBoxAusgabe.Text))
+            {
+                try
+                {
+                    double valueToSubtract = Convert.ToDouble(textBoxAusgabe.Text);
+                    memoryValue -= valueToSubtract;
+                }
+                catch (Exception)
+                {
+                    textBoxAusgabe.Text = "Fehler";
+                }
+            }
         }
         private void MplusButton_Click(object sender, EventArgs e)
         {
-
+            if (!string.IsNullOrWhiteSpace(textBoxAusgabe.Text))
+            {
+                try
+                {
+                    double valueToAdd = Convert.ToDouble(textBoxAusgabe.Text);
+                    memoryValue += valueToAdd;
+                }
+                catch (Exception)
+                {
+                    textBoxAusgabe.Text = "Fehler";
+                }
+            }
         }
         private void MSButton_Click(object sender, EventArgs e)
         {
